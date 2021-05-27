@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api/Docs
+tags:
+  - name: app
+  
+
+
+
+paths:                            
+  #roles 
+  /app/roles:
+    get:
+      operationId: controllers.roles_controller.GetAddRoles.get
+      tags:
+        - roles
+        
+      summary: Read the entire list of roles
+      description: Read the list of roles
+      responses:
+        200:
+          description: Successfully Read the data
+        404:
+          description: Data not found 
+        500:
+          description: Internal server error     
+             
+    post:
+      operationId: controllers.roles_controller.GetAddRoles.post
+      tags:
+        - roles
+      summary: Create a role and add it to the roles list
+      description: Create a new role in the roles list
+      parameters:
+        - name: roles
+          in: body
+          description: create role
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: role name of Roles 
+              status:
+                type: boolean
+                description: status of the role
+
+      responses:
+        201:
+          description: Successfully created a new role
+        409:
+          description: Data conflict error
+        500:
+          description: Internal server error
+          
+          
+  /app/users:
+    get:
+      operationId: controllers.user_controller.GetAddUsers.get
+      tags:
+        - users
+        
+      summary: Read the entire list of Users
+      description: Read the list of Users
+      responses:
+        200:
+          description: Successfully Read the data
+        404:
+          description: Data not found 
+        500:
+          description: Internal server error     
+             
+    post:
+      operationId: controllers.user_controller.GetAddUsers.post
+      tags:
+        - users
+      summary: Create a user and add it to the users list
+      description: Create a new user in the users list
+      parameters:
+        - name: users
+          in: body
+          description: Add user
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: name of user
+              userName:
+                type: string
+                description: userName of user 
+              password:
+                type: string
+                description: password of user
+              mobileNumber:
+                type: string
+                description: mobileNumber of user
+              businessEmail:
+                type: string
+                description: businessEmail of user   
+              roleId:
+                type: integer
+                description: roleId of user  
+              status:
+                type: boolean
+                description: status of the role
+
+      responses:
+        201:
+          description: Successfully created a new role
+        409:
+          description: Data conflict error
+        500:
+          description: Internal server error
+
+          
+
+          
+  
